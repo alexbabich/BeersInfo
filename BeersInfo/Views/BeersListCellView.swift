@@ -7,15 +7,33 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct BeersListCellView: View {
+    
+    var item: Beer
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            if item.image_url != "" {
+                AnimatedImage(url: URL(string: item.image_url)!)
+                    .resizable()
+                    .frame(width: 50, height: 125)
+                    .scaledToFill()
+            } else {
+                Image(systemName: "photo")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
+            
+            Text(item.name)
+                .font(.title)
+                .fontWeight(.light)
+                .padding()
+            
+            Spacer()
+        }
+        .padding(.vertical)
     }
 }
 
-struct BeersListCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        BeersListCellView()
-    }
-}

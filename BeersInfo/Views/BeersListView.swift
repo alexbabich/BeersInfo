@@ -9,14 +9,25 @@
 import SwiftUI
 
 struct BeersListView: View {
+    @ObservedObject var beersVM = BeerListViewModel()
+    
     var body: some View {
-        ZStack(alignment: .center) {
-            Color.base
-            Text("BeersListView")
+        NavigationView {
+            VStack {
+                List(beersVM.beers) { item in
+                    NavigationLink(destination: BeerDetailView()) {
+                        BeersListCellView(item: item)
+                    }
+                }
+            }
+            .navigationBarTitle(Text("First 25 beers"))
+            .onAppear {
+                self.beersVM.fetchBeers()
+            }
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
+
 
 struct BeersListView_Previews: PreviewProvider {
     static var previews: some View {

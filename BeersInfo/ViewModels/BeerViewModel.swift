@@ -23,8 +23,8 @@ struct BeerViewModel: Identifiable {
         return beer.description
     }
     
-    var imageUrl: String {
-        return beer.imageUrl
+    var image_url: String {
+        return beer.image_url
     }
     
     init(_ beer: Beer) {

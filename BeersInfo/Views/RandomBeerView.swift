@@ -8,71 +8,63 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-import UIImageColors
 
 struct RandomBeer: View {
-//    @ObservedObject private var vm = RandomBeerViewModel()
-//    
-//    init() {
-//        vm.getRandomBeer()
-//    }
     
-    @ObservedObject var beerRandom = BeersRandomServices()
-    
-    @State private var backgroundColor: Color = .clear
-    
+    @ObservedObject var beerRandomVM = BeersRandomServices()
     @State private var textColor: Color = .clear
+    @State private var beerTitle: String = "Beer info"
     
     var body: some View {
-        VStack(alignment: .center) {
-            ForEach(beerRandom.datas) { i in
-                GeometryReader { geometry in
+        NavigationView {
+            ScrollView {
+                Color
+                    .clear
+                    .frame(maxWidth: .infinity, maxHeight: 0)
+                ForEach(beerRandomVM.datas) { i in
                     VStack {
-                        Text("Beer Info")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .padding(.top, 50)
-                        
-                        if i.imageUrl != "" {
-                            AnimatedImage(url: URL(string: i.imageUrl)!)
+                        if i.image_url != "" {
+                            AnimatedImage(url: URL(string: i.image_url)!)
                                 .resizable()
-                                .frame(width: 100, height: 300)
+                                .frame(width: 100, height: 320)
                                 .scaledToFill()
                         } else {
                             Image(systemName: "photo")
                         }
                         
-                        Text(i.name)
-                            .padding()
-                            .foregroundColor(self.textColor)
-                            .colorInvert()
-                        
                         Text(i.description)
                             .padding()
                             .foregroundColor(self.textColor)
-                            .colorInvert()
                         
                         Spacer()
                     }
                     .padding(.vertical)
-                }
-                .padding(.vertical)
-                .background(self.backgroundColor)
-                .onAppear {
-                    self.setAverageColor(imageString: i.imageUrl)
+                    .onAppear {
+                        self.beerTitle = i.name
+                        self.setAverageColor(imageString: i.image_url)
+                    }
                 }
             }
+            .navigationBarTitle(Text(self.beerTitle)
+                .font(.body)
+                .fontWeight(.light), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.beerRandomVM.fetchRandom()
+            }, label: {
+                Text("Reload")
+            }))
         }
-        .edgesIgnoringSafeArea(.all)
+        .onAppear {
+            self.beerRandomVM.fetchRandom()
+        }
     }
     
+//    function to get custom color for description and other text
     private func setAverageColor(imageString: String) {
         if imageString != "" {
-            let imageUrl = URL(string: imageString)!
+            let image_url = URL(string: imageString)!
 
-            let uiColor = try? UIImage(withContentsOfUrl: imageUrl)?.averageColor ?? .clear
-            print(uiColor as Any)
-            self.backgroundColor = Color(uiColor!)
+            let uiColor = try? UIImage(withContentsOfUrl: image_url)?.averageColor ?? .clear
             self.textColor = Color(uiColor!)
         }
     }
@@ -82,11 +74,4 @@ struct RandomBeer_Previews: PreviewProvider {
     static var previews: some View {
         RandomBeer()
     }
-}
-
-public struct UIImageColors {
-    public var background: UIColor!
-    public var primary: UIColor!
-    public var secondary: UIColor!
-    public var detail: UIColor!
 }
