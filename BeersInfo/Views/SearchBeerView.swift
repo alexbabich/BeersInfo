@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct SearchBeerView: View {
-    @ObservedObject var beersVM = BeersServices()
     
+    @ObservedObject var beersVM = BeersServices()
     @State private var searchText : String = ""
     
     init() {
@@ -18,24 +18,8 @@ struct SearchBeerView: View {
     }
     
     var body: some View {
-//        NavigationView {
-//            VStack {
-//                List(beersVM.beers) { item in
-//                    NavigationLink(destination: BeerDetailView(beer: item)) {
-//                        BeersListCellView(item: item)
-//                    }
-//                }
-//            }
-//            .navigationBarTitle(Text("Search your favorite beer"), displayMode: .inline)
-//            .onAppear {
-//                self.beersVM.fetchBeers()
-//            }
-//        }
-        
         NavigationView {
             VStack {
-//                SearchBar(text: $searchText, placeholder: "Search cars")
-                
                 HStack {
                     TextField("Type name", text: self.$searchText)
                         .padding(10)
@@ -59,7 +43,6 @@ struct SearchBeerView: View {
                 
                 Divider()
                     .background(Color.black.opacity(0.1))
-                
                 
                 List(beersVM.beersSearch.sorted{ $0.abv < $1.abv } ) { item in
                     NavigationLink(destination: BeerDetailView(beer: item)) {

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct BeerDetailView: View {
     var beer: Beer
@@ -22,11 +21,14 @@ struct BeerDetailView: View {
                     Text("No image")
                         .frame(maxWidth: 200, maxHeight: 200)
                 } else {
-                 AnimatedImage(url: URL(string: beer.image_url)!)
-                    .resizable()
+                    ImageFromUrl(
+                        url: URL(string: beer.image_url)!,
+                        placeholder: Text("Loading ...")
+                    )
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 400, maxHeight: 400)
                     .shadow(radius: 10)
+                    .frame(maxWidth: 400, maxHeight: 400)
+                    
                 }
 
                 VStack(alignment: .leading) {
