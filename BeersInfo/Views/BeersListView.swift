@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct BeersListView: View {
+    
     @ObservedObject var beersVM = BeersServices()
     
     init() {

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct BeersListCellView: View {
     
@@ -15,15 +14,18 @@ struct BeersListCellView: View {
     
     var body: some View {
         HStack {
-            if item.image_url != "" {
-                AnimatedImage(url: URL(string: item.image_url)!)
-                    .resizable()
-                    .frame(width: 50, height: 125)
-                    .scaledToFill()
-            } else {
+            if item.image_url == "" {
                 Image(systemName: "photo")
                     .resizable()
                     .frame(width: 50, height: 50)
+            } else {
+                ImageFromUrl(
+                    url: URL(string: item.image_url)!,
+                    placeholder: Text("Loading ...")
+                )
+                .aspectRatio(contentMode: .fit)
+                .shadow(radius: 10)
+                .frame(width: 50, height: 125)
             }
             
             Text(item.name)

@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct BeerDetailView: View {
+    
     var beer: Beer
-
     @State private var beerAbv = ""
     
     var body: some View {
@@ -103,7 +103,6 @@ struct BeerDetailView: View {
                     .frame(maxWidth: .infinity)
                 }
                 
-                
                 Divider()
                     .background(Color.black.opacity(0.6))
                     .padding(.bottom, 25)
@@ -111,7 +110,6 @@ struct BeerDetailView: View {
                 Text("Description:")
                     .bold()
                     .padding(.bottom, 10)
-                
                 
                 Text(beer.description)
                     .font(.subheadline)
