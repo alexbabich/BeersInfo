@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5556D18524DBCD54003D0BCC /* SearchBeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556D18424DBCD54003D0BCC /* SearchBeerView.swift */; };
 		55A056C924DAD00700A23E8F /* BeerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A056C824DAD00700A23E8F /* BeerListViewModel.swift */; };
 		55A056CB24DAD1C900A23E8F /* BeerListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A056CA24DAD1C900A23E8F /* BeerListService.swift */; };
 		55A056CF24DB476200A23E8F /* BeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A056CE24DB476200A23E8F /* BeerDetailView.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5556D18424DBCD54003D0BCC /* SearchBeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBeerView.swift; sourceTree = "<group>"; };
 		55A056C824DAD00700A23E8F /* BeerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListViewModel.swift; sourceTree = "<group>"; };
 		55A056CA24DAD1C900A23E8F /* BeerListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListService.swift; sourceTree = "<group>"; };
 		55A056CE24DB476200A23E8F /* BeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				55B8051124D30A680060175A /* BeersListView.swift */,
 				55B8051324D30A860060175A /* BeersListCellView.swift */,
 				55A056CE24DB476200A23E8F /* BeerDetailView.swift */,
+				5556D18424DBCD54003D0BCC /* SearchBeerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				55B8051F24D315F00060175A /* BeerViewModel.swift in Sources */,
 				55B804F724D304150060175A /* ContentView.swift in Sources */,
 				55A056C924DAD00700A23E8F /* BeerListViewModel.swift in Sources */,
+				5556D18524DBCD54003D0BCC /* SearchBeerView.swift in Sources */,
 				55A056CB24DAD1C900A23E8F /* BeerListService.swift in Sources */,
 				55B8051D24D314E80060175A /* RandomBeerViewModel.swift in Sources */,
 				55A056CF24DB476200A23E8F /* BeerDetailView.swift in Sources */,

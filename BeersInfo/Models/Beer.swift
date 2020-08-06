@@ -13,4 +13,8 @@ struct Beer: Identifiable, Decodable {
     let name: String
     let description: String
     let image_url: String
+    let contributed_by: String
+    let brewers_tips: String
+    let first_brewed: String
+    let abv: Double
 }

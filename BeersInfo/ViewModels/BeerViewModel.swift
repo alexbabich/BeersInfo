@@ -27,6 +27,22 @@ struct BeerViewModel: Identifiable {
         return beer.image_url
     }
     
+    var contributed_by: String {
+        return beer.contributed_by
+    }
+    
+    var brewers_tips: String {
+        return beer.brewers_tips
+    }
+    
+    var first_brewed: String {
+        return beer.first_brewed
+    }
+    
+    var abv: Double {
+        return beer.abv
+    }
+    
     init(_ beer: Beer) {
         self.beer = beer
     }
