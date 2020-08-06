@@ -17,4 +17,7 @@ struct Beer: Identifiable, Decodable, Hashable {
     let brewers_tips: String
     let first_brewed: String
     let abv: Double
+    let ibu: Double
+    let srm: Double
+    let ebc: Double
 }

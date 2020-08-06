@@ -43,6 +43,18 @@ struct BeerViewModel: Identifiable {
         return beer.abv
     }
     
+    var ibu: Double {
+        return beer.ibu
+    }
+    
+    var srm: Double {
+        return beer.ibu
+    }
+    
+    var ebc: Double {
+        return beer.ibu
+    }
+    
     init(_ beer: Beer) {
         self.beer = beer
     }

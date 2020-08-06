@@ -34,18 +34,39 @@ struct SearchBeerView: View {
         
         NavigationView {
             VStack {
-                SearchBar(text: $searchText, placeholder: "Search cars")
-                List {
-                    ForEach(self.beersVM.beers.filter {
-                        self.searchText.isEmpty ? true : $0.name.lowercased().localizedCaseInsensitiveContains(self.searchText.lowercased())
-                    }, id: \.self) { item in
-                        Text(item.name)
+//                SearchBar(text: $searchText, placeholder: "Search cars")
+                
+                HStack {
+                    TextField("Type name", text: self.$searchText)
+                        .padding(10)
+                        .font(Font.system(size: 15, weight: .medium))
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .frame(height: 50)
+                    
+                    Button(action: {
+                        self.beersVM.searchBeers(searchName: self.searchText)
+                    }) {
+                        Text("Search beer")
+                    }
+                    .padding(10)
+                    .foregroundColor(Color.black.opacity(0.7))
+                    .background(Color.yellow.opacity(0.5))
+                    .cornerRadius(10)
+                    .padding(10)
+                    .frame(height: 50)
+                }
+                .padding()
+                
+                Divider()
+                    .background(Color.black.opacity(0.1))
+                
+                
+                List(beersVM.beersSearch.sorted{ $0.abv < $1.abv } ) { item in
+                    NavigationLink(destination: BeerDetailView(beer: item)) {
+                        BeersListCellView(item: item)
                     }
                 }
                 .navigationBarTitle(Text("Search your favorite beer"), displayMode: .inline)
-                .onAppear {
-                    self.beersVM.fetchBeers()
-                }
             }
         }
     }

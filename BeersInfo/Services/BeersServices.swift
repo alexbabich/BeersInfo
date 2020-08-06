@@ -24,7 +24,7 @@ class BeersServices: ObservableObject {
             self.datas.removeAll()
             
             for i in json {
-                self.datas.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["abv"].doubleValue))
+                self.datas.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["abv"].doubleValue, ibu: i.1["ibu"].doubleValue, srm: i.1["srm"].doubleValue, ebc: i.1["ebc"].doubleValue))
             }
 //            print(self.datas)
         }
@@ -38,7 +38,7 @@ class BeersServices: ObservableObject {
                 self.beers.removeAll()
                 
                 for i in json {
-                    self.beers.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["abv"].doubleValue))
+                    self.beers.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["abv"].doubleValue, ibu: i.1["ibu"].doubleValue, srm: i.1["srm"].doubleValue, ebc: i.1["ebc"].doubleValue))
                 }
             }
         }
@@ -46,13 +46,14 @@ class BeersServices: ObservableObject {
         
         
 //    Returns all beers for search with parameter
-        func searchBeers() {
-            AF.request("https://api.punkapi.com/v2/beers?beer_name=").responseData { (data) in
+    func searchBeers(searchName: String) {
+            let parameters = ["beer_name": searchName]
+            AF.request("https://api.punkapi.com/v2/beers", parameters: parameters).responseData { (data) in
                 let json = try! JSON(data: data.data!)
                 self.beersSearch.removeAll()
                 
                 for i in json {
-                    self.beersSearch.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["abv"].doubleValue))
+                    self.beersSearch.append(Beer(id: i.1["id"].intValue, name: i.1["name"].stringValue, description: i.1["description"].stringValue, image_url: i.1["image_url"].stringValue, contributed_by: i.1["contributed_by"].stringValue, brewers_tips: i.1["brewers_tips"].stringValue, first_brewed: i.1["first_brewed"].stringValue, abv: i.1["ibu"].doubleValue, ibu: i.1["abv"].doubleValue, srm: i.1["srm"].doubleValue, ebc: i.1["ebc"].doubleValue))
                 }
     //            print(self.beersSearch)
             }

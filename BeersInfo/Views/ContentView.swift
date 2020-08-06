@@ -34,7 +34,7 @@ struct ContentView: View {
                 
                 SearchBeerView()
                     .tabItem {
-                        Image(systemName: (selected == 1 ? "magnifyingglass.circle.fill" : "magnifyingglass.circle"))
+                        Image(systemName: (selected == 2 ? "magnifyingglass.circle.fill" : "magnifyingglass.circle"))
                         Text("Search")
                     }.tag(2)
             }

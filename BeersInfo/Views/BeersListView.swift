@@ -18,7 +18,7 @@ struct BeersListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(beersVM.beers) { item in
+                List(beersVM.beers.sorted{ $0.abv > $1.abv }) { item in
                     NavigationLink(destination: BeerDetailView(beer: item)) {
                         BeersListCellView(item: item)
                     }
