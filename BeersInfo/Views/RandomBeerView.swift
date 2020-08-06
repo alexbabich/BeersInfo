@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct RandomBeer: View {
     
-    @ObservedObject var beerRandomVM = BeersRandomServices()
+    @ObservedObject var beerRandomVM = BeersServices()
     @State private var textColor: Color = .clear
     @State private var beerTitle: String = "Beer info"
     
@@ -21,28 +21,13 @@ struct RandomBeer: View {
                 Color
                     .clear
                     .frame(maxWidth: .infinity, maxHeight: 0)
-                ForEach(beerRandomVM.datas) { i in
-                    VStack {
-                        if i.image_url != "" {
-                            AnimatedImage(url: URL(string: i.image_url)!)
-                                .resizable()
-                                .frame(width: 100, height: 320)
-                                .scaledToFill()
-                        } else {
-                            Image(systemName: "photo")
+                ForEach(beerRandomVM.datas) { item in
+                    BeerDetailView(beer: item)
+                        .padding(.vertical)
+                        .onAppear {
+                            self.beerTitle = item.name
+                            self.setAverageColor(imageString: item.image_url)
                         }
-                        
-                        Text(i.description)
-                            .padding()
-                            .foregroundColor(self.textColor)
-                        
-                        Spacer()
-                    }
-                    .padding(.vertical)
-                    .onAppear {
-                        self.beerTitle = i.name
-                        self.setAverageColor(imageString: i.image_url)
-                    }
                 }
             }
             .navigationBarTitle(Text(self.beerTitle)

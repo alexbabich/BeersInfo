@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BeersListView: View {
-    @ObservedObject var beersVM = BeerListViewModel()
+    @ObservedObject var beersVM = BeersServices()
     
     init() {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)]
